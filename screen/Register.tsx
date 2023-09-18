@@ -154,17 +154,7 @@ export default function Register() {
                       {errors.password}
                     </Text>
                   )}
-                  <TouchableOpacity style={{ marginTop: 7 }}>
-                    <Text
-                      style={{
-                        color: "#B7B6B6",
-                        fontSize: 15,
-                        textAlign: "right",
-                      }}
-                    >
-                      Forget password?
-                    </Text>
-                  </TouchableOpacity>
+                
                   <TouchableOpacity
                     style={{
                       marginTop: 30,

@@ -123,7 +123,7 @@ const Login = () => {
                         {errors.password}
                       </Text>
                     )}
-                    <TouchableOpacity style={{ marginTop: 7 }}>
+                    <TouchableOpacity style={{ marginTop: 7 }} onPress={() => navigation.navigate("forgetPassword")}>
                       <Text
                         style={{
                           color: "#B7B6B6",
