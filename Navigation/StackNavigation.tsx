@@ -5,6 +5,7 @@ import Register from "../screen/Register";
 import ForgetPassword from "../screen/ForgetPassword";
 import Otp from "../screen/Otp";
 import NewPassword from "../screen/NewPassword";
+import SuccessPassword from "../screen/SucessPassword";
 
 export default function StackNavigation() {
   const Stack = createNativeStackNavigator();
@@ -34,6 +35,11 @@ export default function StackNavigation() {
         <Stack.Screen
           name="newPassword"
           component={NewPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="successPassword"
+          component={SuccessPassword}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

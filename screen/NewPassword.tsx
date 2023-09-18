@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity,TextInput } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity,TextInput ,Platform} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -18,7 +18,13 @@ const validateSchema = yup.object().shape({
     .required("Please confirm your password"),
 });
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginHorizontal: 10,
+        paddingTop: Platform.OS === "android" ? 40 : 0,
+      }}
+    >
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <MaterialIcons name="keyboard-arrow-left" size={40} color="black" />
       </TouchableOpacity>
@@ -38,8 +44,8 @@ const validateSchema = yup.object().shape({
         </Text>
       </View>
       <Formik
-        initialValues={{  password: "",confirmPassword: "" }}
-        onSubmit={(values) => console.log(values)}
+        initialValues={{ password: "", confirmPassword: "" }}
+        onSubmit={(values) => navigation.navigate("successPassword")}
         validationSchema={validateSchema}
       >
         {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -50,8 +56,7 @@ const validateSchema = yup.object().shape({
                 borderColor: "#B8FFB2",
                 paddingHorizontal: 10,
                 position: "relative",
-                              borderRadius: 6,
-                
+                borderRadius: 6,
               }}
             >
               <View>
@@ -75,7 +80,9 @@ const validateSchema = yup.object().shape({
               </View>
             </View>
             {errors.password && (
-              <Text style={{ color: "red", marginTop: 5 }}>{errors.password}</Text>
+              <Text style={{ color: "red", marginTop: 5 }}>
+                {errors.password}
+              </Text>
             )}
 
             <View
@@ -97,7 +104,7 @@ const validateSchema = yup.object().shape({
                     fontSize: 16,
                   }}
                 >
-                Confirm Password
+                  Confirm Password
                 </Text>
                 <TextInput
                   style={{ height: 50, fontSize: 19 }}
@@ -113,18 +120,17 @@ const validateSchema = yup.object().shape({
                 {errors.confirmPassword}
               </Text>
             )}
-          
+
             <TouchableOpacity
               style={{
                 marginTop: 70,
                 backgroundColor: "#5DE750",
                 marginHorizontal: 90,
                 justifyContent: "center",
-                borderRadius: 50,
-                              paddingVertical: 15,
-            
+                borderRadius: 60,
+                paddingVertical: 15,
               }}
-              onPress={() => handleSubmit()}
+              // onPress={() => handleSubmit()}
             >
               <Text
                 style={{
@@ -135,7 +141,7 @@ const validateSchema = yup.object().shape({
                   fontWeight: "500",
                 }}
               >
-              Reset
+                Reset
               </Text>
             </TouchableOpacity>
           </View>

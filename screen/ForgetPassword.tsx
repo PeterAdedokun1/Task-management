@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -22,7 +23,13 @@ const ForgetPassword = () => {
       .required("Please enter an email address to continue "),
   });
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginHorizontal: 10,
+        paddingTop: Platform.OS === "android" ? 40 : 0,
+      }}
+    >
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <MaterialIcons name="keyboard-arrow-left" size={40} color="black" />
       </TouchableOpacity>

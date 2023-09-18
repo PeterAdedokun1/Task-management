@@ -31,7 +31,7 @@ const Otp = () => {
     setOtp(newOtp);
     };
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10 }}>
+    <SafeAreaView style={{ flex: 1, marginHorizontal: 10,  paddingTop: Platform.OS === "android" ? 40 : 0,}}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <MaterialIcons name="keyboard-arrow-left" size={40} color="black" />
       </TouchableOpacity>
