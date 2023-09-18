@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import img from "../assets/mark.png";
+
 import { useNavigation } from "@react-navigation/native";
 export default function SucessPassword() {
   const navigation: any = useNavigation();
@@ -16,7 +16,7 @@ export default function SucessPassword() {
       <View
         style={{ backgroundColor: "#5DE750", borderRadius: 100, padding: 50 }}
       >
-        <Image source={img} />
+        <Image source={require("../assets/mark.png")} />
       </View>
       <Text
         style={{

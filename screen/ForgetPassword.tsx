@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import img from "../assets/forgot-password.png";
 import * as yup from "yup";
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
@@ -34,7 +33,7 @@ const ForgetPassword = () => {
         <MaterialIcons name="keyboard-arrow-left" size={40} color="black" />
       </TouchableOpacity>
       <View style={{ alignItems: "center" }}>
-        <Image source={img} style={{}} />
+        <Image source={require("../assets/forgot-password.png")}  />
       </View>
       <View style={{ marginTop: 15, marginBottom: 50 }}>
         <Text style={{ fontSize: 30 }}>Forget Password</Text>

@@ -14,7 +14,7 @@ const validateSchema = yup.object().shape({
   password: yup.string().required("Please enter a password to continue "),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Password must match")
+    .oneOf([yup.ref("password"), undefined], "Password must match")
     .required("Please confirm your password"),
 });
   return (
@@ -130,7 +130,7 @@ const validateSchema = yup.object().shape({
                 borderRadius: 60,
                 paddingVertical: 15,
               }}
-              // onPress={() => handleSubmit()}
+              onPress={() => handleSubmit()}
             >
               <Text
                 style={{

@@ -7,7 +7,6 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import Img1 from "../assets/img1.png";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -19,7 +18,7 @@ const Login = () => {
   const validateSchema = yup.object().shape({
     email: yup
       .string()
-      .email("Not a valid email address")
+      // .email("Not a valid email address")
       .required("Please enter an email address to continue "),
     password: yup.string().required("Please enter your password"),
   });
@@ -33,7 +32,10 @@ const Login = () => {
         }}
       >
         <View>
-          <Image source={Img1} style={{ width: "100%", height: 200 }} />
+          <Image
+            source={require("../assets/img1.png")}
+            style={{ width: "100%", height: 200 }}
+          />
           <View style={{ marginHorizontal: 10 }}>
             <Text style={{ fontSize: 30 }}>Welcome!!</Text>
             <Text style={{ fontSize: 40, color: "#5E9959", fontWeight: "600" }}>
@@ -42,7 +44,7 @@ const Login = () => {
             <View style={{ marginTop: 30 }}>
               <Formik
                 initialValues={{ email: "", password: "" }}
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => navigation.replace("main")}
                 validationSchema={validateSchema}
               >
                 {({
@@ -123,7 +125,10 @@ const Login = () => {
                         {errors.password}
                       </Text>
                     )}
-                    <TouchableOpacity style={{ marginTop: 7 }} onPress={() => navigation.navigate("forgetPassword")}>
+                    <TouchableOpacity
+                      style={{ marginTop: 7 }}
+                      onPress={() => navigation.navigate("forgetPassword")}
+                    >
                       <Text
                         style={{
                           color: "#B7B6B6",

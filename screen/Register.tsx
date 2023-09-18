@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import Img1 from "../assets/img1.png";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -29,13 +28,16 @@ export default function Register() {
     <View
       style={{
         flexDirection: "column",
-          justifyContent: "space-between",
+        justifyContent: "space-between",
         flex: 1,
         marginBottom: 50,
       }}
     >
       <View>
-        <Image source={Img1} style={{ width: "100%", height: 200 }} />
+        <Image
+          source={require("../assets/img1.png")}
+          style={{ width: "100%", height: 200 }}
+        />
         <View style={{ marginHorizontal: 10 }}>
           <Text style={{ fontSize: 30 }}>Welcome Back!!</Text>
           <Text style={{ fontSize: 40, color: "#5E9959", fontWeight: "600" }}>
@@ -154,7 +156,7 @@ export default function Register() {
                       {errors.password}
                     </Text>
                   )}
-                
+
                   <TouchableOpacity
                     style={{
                       marginTop: 30,

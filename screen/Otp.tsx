@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React,{useState, useRef} from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import img from "../assets/otp.png";
 import { useNavigation } from "@react-navigation/native";
 const Otp = () => {
     const navigation: any = useNavigation();
@@ -31,14 +30,20 @@ const Otp = () => {
     setOtp(newOtp);
     };
   return (
-    <SafeAreaView style={{ flex: 1, marginHorizontal: 10,  paddingTop: Platform.OS === "android" ? 40 : 0,}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        marginHorizontal: 10,
+        paddingTop: Platform.OS === "android" ? 40 : 0,
+      }}
+    >
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <MaterialIcons name="keyboard-arrow-left" size={40} color="black" />
       </TouchableOpacity>
       <View style={{ alignItems: "center" }}>
-        <Image source={img} style={{}} />
+        <Image source={require("../assets/otp.png")}  />
       </View>
-          <View style={{ marginTop: 15, marginBottom: 20 }}>
+      <View style={{ marginTop: 15, marginBottom: 20 }}>
         <Text style={{ fontSize: 30 }}>Enter OTP</Text>
         <Text
           style={{
