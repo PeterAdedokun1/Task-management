@@ -13,8 +13,9 @@ import { Formik } from "formik";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons"; 
 import { AntDesign } from "@expo/vector-icons";
-
+import { useNavigation } from "@react-navigation/native";
 const Login = () => {
+    const navigation: any = useNavigation()
   const validateSchema = yup.object().shape({
     email: yup
       .string()
@@ -174,7 +175,7 @@ const Login = () => {
         </View>
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
           <Text style={{ fontSize: 16 }}>Don't have an account?</Text>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate("Register")}>
             <Text
               style={{
                 color: "#5E9959",
