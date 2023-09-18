@@ -1,22 +1,26 @@
-import { View, Text, SafeAreaView, TouchableOpacity,TextInput ,Platform} from 'react-native'
-import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { MaterialIcons } from '@expo/vector-icons';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  TextInput,
+  Platform,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
 import * as yup from "yup";
 import { Formik } from "formik";
-interface FormValues {
-  password: string;
-  confirmPassword: string;
-}
+
 export default function NewPassword() {
-    const navigation: any = useNavigation()
-const validateSchema = yup.object().shape({
-  password: yup.string().required("Please enter a password to continue "),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), undefined], "Password must match")
-    .required("Please confirm your password"),
-});
+  const navigation: any = useNavigation();
+  const validateSchema = yup.object().shape({
+    password: yup.string().required("Please enter a password to continue "),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), undefined], "Password must match")
+      .required("Please confirm your password"),
+  });
   return (
     <SafeAreaView
       style={{

@@ -8,6 +8,7 @@ import Otp from "../screen/Otp";
 import NewPassword from "../screen/NewPassword";
 import SuccessPassword from "../screen/SucessPassword";
 import HomeScreen from "../screen/HomeScreen";
+import CreateTask from "../screen/CreateTask";
 import { Octicons } from '@expo/vector-icons';
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -105,6 +106,11 @@ export default function StackNavigation() {
         <Stack.Screen
           name="successPassword"
           component={SuccessPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="createTask"
+          component={CreateTask}
           options={{ headerShown: false }}
         />
         <Stack.Screen
