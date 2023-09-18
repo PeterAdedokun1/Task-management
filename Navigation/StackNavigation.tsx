@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "../screen/Login";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Register from "../screen/Register";
 import ForgetPassword from "../screen/ForgetPassword";
 import Otp from "../screen/Otp";
+import NewPassword from "../screen/NewPassword";
 
 export default function StackNavigation() {
   const Stack = createNativeStackNavigator();
@@ -29,6 +29,11 @@ export default function StackNavigation() {
         <Stack.Screen
           name="otp"
           component={Otp}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="newPassword"
+          component={NewPassword}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
