@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
+  Alert,
 } from "react-native";
 import React from "react";
 import * as yup from "yup";
@@ -14,6 +15,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import customFetch from "../utils/CustomFetch";
 export default function Register() {
   const navigation: any = useNavigation();
   const validateSchema = yup.object().shape({
@@ -46,7 +48,16 @@ export default function Register() {
           <View style={{ marginTop: 30 }}>
             <Formik
               initialValues={{ userName: "", email: "", password: "" }}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={async (values) => {
+                try {
+                  await customFetch.post("/users/register", values);
+                  Alert.alert("success");
+                } catch (error) {
+                  console.log(error);
+                  Alert.alert("falied");
+                  // return error;
+                }
+              }}
               validationSchema={validateSchema}
             >
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -177,7 +188,7 @@ export default function Register() {
                         fontWeight: "500",
                       }}
                     >
-                      Sign In
+                      Sign Up
                     </Text>
                   </TouchableOpacity>
                 </View>

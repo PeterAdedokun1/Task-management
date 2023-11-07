@@ -138,7 +138,7 @@ const CreateTask = () => {
                   <Button title="DatePicker"  onPress={() => showMode("date")}/>
                   <Button title="TimePicker"  onPress={() => showMode("time")}/>
                 </View>
-                {show && (
+                {/* {show && (
         <DateTimePicker
         testID="dateTimePicker"
         
@@ -149,7 +149,7 @@ const CreateTask = () => {
           display="calendar"
           onChange={onchange}
         />
-      )}
+      )} */}
               </View>
               <View style={{ flexDirection: "row", marginTop: 15 }}>
                 <View>
