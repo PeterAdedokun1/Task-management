@@ -11,7 +11,22 @@ export const register = async (req: Request, res: Response) => {
   const user = await User.create(req.body);
   res.status(StatusCodes.OK).json({ msg: "user created" });
 };
+export const updatePassword = async (req: Request, res: Response) => {
+  const { userName, newPassword } = req.body;
 
+  const hashedPassword = await hashPassword(newPassword);
+  console.log(hashPassword);
+  const updatedUser = await User.findOneAndUpdate(
+    { userName },
+    { $set: { password: hashedPassword } },
+    { new: true }
+  );
+
+  if (!updatedUser) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  res.json({ message: "Password updated successfully" });
+};
 export const login = async (req: Request, res: Response) => {
   const user = await User.findOne({ email: req.body.email });
   const isValidUser =
@@ -73,6 +88,6 @@ export const verifyOtp = async (req: Request, res: Response) => {
       .status(StatusCodes.BAD_REQUEST)
       .json({ msg: "invalid otp code " });
   }
- 
+
   res.status(StatusCodes.OK).json({ msg: "successfull" });
 };
