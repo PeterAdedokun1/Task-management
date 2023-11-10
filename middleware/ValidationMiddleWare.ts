@@ -63,3 +63,10 @@ export const validateLoginInput = withValidateErrors([
     .withMessage("invalid email format"),
   body("password").notEmpty().withMessage("password is required"),
 ]);
+export const validateSendOtp = withValidateErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email format"),
+]);

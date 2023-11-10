@@ -4,7 +4,6 @@ import { StatusCodes } from "http-status-codes";
 import { comparePassword, hashPassword } from "../utils/PasswordUtil";
 import { UnauthenticatedError } from "../errors/CustomError";
 import nodemailer from "nodemailer";
-import { error, info } from "console";
 
 export const register = async (req: Request, res: Response) => {
   const hashedPassword = await hashPassword(req.body.password);
@@ -19,7 +18,7 @@ export const login = async (req: Request, res: Response) => {
     user && (await comparePassword(req.body.password, user.password));
   if (!isValidUser) {
     //  throw new UnauthenticatedError("invalid  credentials");
-    return res.status(StatusCodes.BAD_GATEWAY).json({ msg: "bad request" });
+    return res.status(StatusCodes.BAD_REQUEST).json({ msg: "bad request" });
   }
   res.status(StatusCodes.OK).json({ msg: "user logged in" });
 };
@@ -27,26 +26,32 @@ export const login = async (req: Request, res: Response) => {
 const generateOTP = () => {
   return Math.floor(10000 + Math.random() * 90000).toString();
 };
-
-export const sendOTP = async (req: Request, res: Response) => {
-  const email = "peteradedokun167@gmail.com";
+export const sendOtp = async (req: Request, res: Response) => {
+  const { email } = req.body;
+  const exisitingUser = await User.findOne({ email });
+  if (!exisitingUser) {
+    return res
+      .status(404)
+      .json({ error: "User not found with the provided email" });
+  }
+  // Generate OTP
   const otp = generateOTP();
 
+  await User.updateOne({ email }, { $set: { otp } });
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
       user: "peteradedokun167@gmail.com",
-      pass: "peterade@2003",
+      pass: "iddk avlp bhot lnil",
     },
     tls: {
-    rejectUnauthorized: false,
-  },
+      rejectUnauthorized: false,
+    },
   });
-  //Email content
   const mailOptions = {
     from: "peteradedokun167@gmail.com",
     to: email,
-    subject: "Your OTP Code",
+    subject: "OTP CODE FOR Peter's Task management app",
     text: `Your OTP code is: ${otp}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
@@ -58,4 +63,16 @@ export const sendOTP = async (req: Request, res: Response) => {
       res.json({ message: "OTP sent successfully." });
     }
   });
+};
+
+export const verifyOtp = async (req: Request, res: Response) => {
+  const { email, otp } = req.body;
+  const user = await User.findOne({ otp });
+  if (!user) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ msg: "invalid otp code " });
+  }
+ 
+  res.status(StatusCodes.OK).json({ msg: "successfull" });
 };
